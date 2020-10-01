@@ -92,6 +92,15 @@ cv2.createTrackbar("Sat Min","Trackbars",0,255,empty)
 cv2.createTrackbar("Sat Max","Trackbars",0,255,empty)
 cv2.createTrackbar("Val Min","Trackbars",0,255,empty)
 cv2.createTrackbar("Val Max","Trackbars",0,255,empty)
+
+
+img = cv2.imread("img/pers.jpg")
+pts1 = np.float32([[27,166],[189,169],[57,349],[211,312]])
+pts2 = np.float32([[0,0],[width,0],[0,height],[width,height]])
+
+matrix = cv2.getPerspectiveTransform(pts1,pts2)
+imageOutput = cv2.warpPerspective(img,matrix,(width,height))
+
 while True:
     img = cv2.imread("car.jpg")
     imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
